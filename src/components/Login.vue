@@ -1,6 +1,7 @@
 <template>
     <div id="nav-login">
         <Navbar title="meg."></Navbar>
+        <div class="just-some-extra-space please-keep-6ft-social-distance" style="width: 40px; margin: 60px; display:block;"></div>
         <h1>Please log inwards.</h1>
         <div id="login-form">
             <form>
