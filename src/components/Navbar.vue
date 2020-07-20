@@ -16,8 +16,9 @@
         padding-top: 40px;
     }
     #component-navbar {
+        margin-top: 8px;
         display: block;
-        padding: 0 30px 30px 12px;
+        padding: 12px 30px 30px 12px;
         height: 42px;
     }
 </style>

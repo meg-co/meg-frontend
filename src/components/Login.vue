@@ -4,32 +4,20 @@
         <h1>Please log inwards.</h1>
         <div id="login-form">
             <form>
-                <md-field>
+                <md-field class="squoosh-field">
                     <label>Email</label>
-                    <md-input v-model="password"></md-input>
-                </md-field><span class="color-error" v-if="passwordError">👆this one please.</span>
+                    <md-input v-model="username"></md-input>
+                </md-field><span class="color-error" v-if="emailError">👆this one please.</span>
                 <md-field>
                     <label>Password</label>
-                    <md-input v-model="password"></md-input>
-                </md-field>
-                <md-button type="button" @click="tryLogin"><i class="fas fa-arrow-right"></i></md-button>
-
-
-<!--                <label for="email">Email</label>-->
-<!--                <input id="email"-->
-<!--                       type="text"-->
-<!--                       aria-label="email"-->
-<!--                       v-model="username"-->
-<!--                       placeholder="meg@meg.gg"-->
-<!--                       v-on:keypress="()=>purgeErrors('email')"> <br/>-->
-<!--                <label for="password">Password</label>-->
-<!--                <input id="password"-->
-<!--                       type="password"-->
-<!--                       aria-label="password"-->
-<!--                       @keypress="()=>purgeErrors('password')"-->
-<!--                       v-model="password"> <br/>-->
-<!--                <button type="button" v-on:click="tryLogin">⇨</button> <span v-if="loginError" class="color-error">{{loginError.message}}</span>-->
+                    <md-input v-model="password" type="password"></md-input>
+                </md-field><span class="color-error" v-if="passwordError">👆this one please.</span>
+                <md-button id="login-button"
+                           type="button"
+                           class="md-raised"
+                           @click="tryLogin"><i class="fas fa-arrow-right fa-lg"></i></md-button>
             </form>
+            <span v-if="loginError" class="color-error">{{loginError.message}}</span>
         </div>
     </div>
 </template>
@@ -112,5 +100,17 @@
         float: right;
         margin-left: auto;
         horiz-align: right;
+    }
+    #login-button {
+        min-width: 48px;
+        float: right;
+        margin-right: 0;
+        border-color: rgba(44, 62, 80, 0.64);
+        border-width: 1px !important;
+        border-style: solid;
+        box-shadow: none;
+    }
+    .squoosh-field {
+        margin-bottom: 0;
     }
 </style>
