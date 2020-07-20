@@ -4,20 +4,31 @@
         <h1>Please log inwards.</h1>
         <div id="login-form">
             <form>
-                <label for="email">Email</label>
-                <input id="email"
-                       type="text"
-                       aria-label="email"
-                       v-model="username"
-                       placeholder="meg@meg.gg"
-                       v-on:keypress="()=>purgeErrors('email')"> <span class="color-error" v-if="emailError">👈 this one please.</span><br/>
-                <label for="password">Password</label>
-                <input id="password"
-                       type="password"
-                       aria-label="password"
-                       @keypress="()=>purgeErrors('password')"
-                       v-model="password"> <span class="color-error" v-if="passwordError">👈 this one please.</span><br/>
-                <button type="button" v-on:click="tryLogin">⇨</button> <span v-if="loginError" class="color-error">{{loginError.message}}</span>
+                <md-field>
+                    <label>Email</label>
+                    <md-input v-model="password"></md-input>
+                </md-field><span class="color-error" v-if="passwordError">👆this one please.</span>
+                <md-field>
+                    <label>Password</label>
+                    <md-input v-model="password"></md-input>
+                </md-field>
+                <md-button type="button" @click="tryLogin"><i class="fas fa-arrow-right"></i></md-button>
+
+
+<!--                <label for="email">Email</label>-->
+<!--                <input id="email"-->
+<!--                       type="text"-->
+<!--                       aria-label="email"-->
+<!--                       v-model="username"-->
+<!--                       placeholder="meg@meg.gg"-->
+<!--                       v-on:keypress="()=>purgeErrors('email')"> <br/>-->
+<!--                <label for="password">Password</label>-->
+<!--                <input id="password"-->
+<!--                       type="password"-->
+<!--                       aria-label="password"-->
+<!--                       @keypress="()=>purgeErrors('password')"-->
+<!--                       v-model="password"> <br/>-->
+<!--                <button type="button" v-on:click="tryLogin">⇨</button> <span v-if="loginError" class="color-error">{{loginError.message}}</span>-->
             </form>
         </div>
     </div>
