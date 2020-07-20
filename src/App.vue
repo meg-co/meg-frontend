@@ -1,12 +1,7 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <div class="meg-logo"><h1 class="meg-logo">messages.</h1></div>
+    <div id="app">
+        <router-view/>
     </div>
-    <div>
-      <router-view/>
-    </div>
-  </div>
 </template>
 
 <style>
@@ -28,13 +23,6 @@
   display: inline-block;
   vertical-align: text-bottom;
 }
-.nav-middle {
-  padding-top: 40px;
-}
-#nav {
-  padding: 0 30px 30px 12px;
-}
-
 #nav a {
   padding-top: 0;
   font-weight: bold;
