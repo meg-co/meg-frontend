@@ -1,20 +1,34 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import axios from 'axios';
+import requireAuth from "../controllers/auth";
+
+const ROUTE_LOGIN = '/login';
+
+async function checkAuth(to, from, next) {
+  /**
+   * Vue specific callback for checking authentication
+   */
+  if (!await requireAuth()) {
+    next({
+      path: ROUTE_LOGIN,
+      query: { redirect: to.fullPath }
+    })
+  }
+  next();
+}
 
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
   {
     path: '/about',
@@ -27,21 +41,12 @@ Vue.use(VueRouter)
     {
       path: '/messages',
       name: 'Messages',
-      component: async ()=>checkAuthentication(import(/* webpackChunkName: "messages" */ '../views/Messages.vue'), import(/* webpackChunkName: "about" */ '../views/Login.vue'))
+      beforeEnter: checkAuth,
+      component: () => import(/* webpackChunkName: "messages" */ '../views/Messages.vue'),
+
     }
 ]
 
-async function checkAuthentication(component, alternateComponent) {
-  window.axios = axios;
-  const jwt = window.localStorage.getItem('access_token');
-  const result = await axios.get(`${process.env.VUE_APP_API_URL}/auth/me`, {headers: {Authorization: `JWT ${jwt}`}});
-  if (result.status === 200) {
-    return component;
-  }
-  else {
-    return alternateComponent;
-  }
-}
 
 const router = new VueRouter({
   mode: 'history',

@@ -7,11 +7,11 @@
             <form>
                 <md-field class="squoosh-field">
                     <label>Email</label>
-                    <md-input v-model="username"></md-input>
+                    <md-input v-model="username" @keypress="submitIfEnter"></md-input>
                 </md-field><span class="color-error" v-if="emailError">👆this one please.</span>
                 <md-field>
                     <label>Password</label>
-                    <md-input v-model="password" type="password"></md-input>
+                    <md-input v-model="password" type="password" @keypress="submitIfEnter"></md-input>
                 </md-field><span class="color-error" v-if="passwordError">👆this one please.</span>
                 <md-button id="login-button"
                            type="button"
@@ -26,7 +26,7 @@
 <script>
     import axios from 'axios';
     import Navbar from "./Navbar";
-    window.axios = axios;
+
     export default {
         name: 'Login',
         components: {Navbar},
@@ -39,6 +39,11 @@
         }),
 
         methods: {
+            submitIfEnter: async function(event) {
+                if(event.key === 'Enter') {
+                    return await this.tryLogin();
+                }
+            },
             tryLogin: async function() {
                 this.purgeErrors('all')
                 if (!this.password || !this.username) {
@@ -52,22 +57,15 @@
                     res = await axios.post(`${process.env.VUE_APP_API_URL}/auth`, {
                             username: this.username,
                             password: this.password
-                        },
-                        {
-                            header: {
-                                Allow: '*',
-                            }
                         });
                     window.localStorage.setItem('access_token', res.data.access_token);
+                    this.$router.replace(this.$route.query.redirect || '/messages')
                 }
                 catch (e) {
                     if (e.response.status === 401) {
                         this.loginError = {message: '👆 Nope.'}
                     }
-                    console.dir(e)
                 }
-                console.log('RES', res);
-                window.res = res;
             },
             purgeErrors: function(fromField) {
                 if(fromField === 'email' || fromField === 'all') {

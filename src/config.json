@@ -1,0 +1,4 @@
+{
+  "LANDING_PAGE": "/messages",
+  "AUTHENTICATION_ROUTE": "/auth/me"
+}
