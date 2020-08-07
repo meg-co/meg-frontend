@@ -45,15 +45,18 @@
                 }
             },
             tryLogin: async function() {
+                console.log(1);
                 this.purgeErrors('all')
                 if (!this.password || !this.username) {
                     [this.emailError, this.passwordError] = [!this.username, !this.password];
                     return;
                 }
                 [this.emailError, this.passwordError] = [false, false]
-                console.log(axios);
                 let res;
+                console.log(2);
                 try {
+                    window.axios = axios;
+                    window.t = this;
                     res = await axios.post(`${process.env.VUE_APP_API_URL}/auth`, {
                             username: this.username,
                             password: this.password
@@ -64,6 +67,9 @@
                 catch (e) {
                     if (e.response.status === 401) {
                         this.loginError = {message: '👆 Nope.'}
+                    }
+                    else {
+                        console.error(e)
                     }
                 }
             },
