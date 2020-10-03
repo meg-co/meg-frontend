@@ -1,29 +1,6 @@
 <template>
     <div class="page-container">
         <md-app md-waterfall md-mode="fixed-last">
-            <md-app-toolbar class="md-large md-dense md-primary">
-                <div class="md-toolbar-row">
-                    <div class="md-toolbar-section-start">
-                        <span class="md-title meg-logo">meg.</span>
-                    </div>
-
-                    <div class="md-toolbar-section-end">
-                        <md-button class="md-icon-button">
-                            <md-icon>more_vert</md-icon>
-                        </md-button>
-                    </div>
-                </div>
-
-                <div class="md-toolbar-row">
-                    <md-tabs style="background-color: #F6F6F6">
-                        <md-tab id="tab-home" md-label="Messages"></md-tab>
-                        <md-tab id="tab-pages" md-label="Events"></md-tab>
-                        <md-tab id="tab-posts" md-label="Groups"></md-tab>
-                    </md-tabs>
-                </div>
-            </md-app-toolbar>
-
-
 
             <md-app-content>
               <router-view/>
@@ -34,6 +11,10 @@
 
 
 <style>
+
+* {
+    background-color: #FAFAFA !important;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
