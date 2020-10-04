@@ -64,6 +64,7 @@
 /* global styles */
 .md-toolbar.md-theme-default.md-primary {
     background-color: #F6F6F6 !important;
+    width: 50px;
 }
 .md-tabs.md-theme-default.md-primary .md-tabs-navigation {
     background-color: #F6F6F6 !important;

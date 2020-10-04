@@ -12,19 +12,14 @@
                     </md-button>
                 </div>
             </div>
-            <div class="md-toolbar-row">
-                <md-tabs style="background-color: #F6F6F6">
-                    <md-tab id="tab-home" md-label="Messages"></md-tab>
-                    <md-tab id="tab-pages" md-label="Events"></md-tab>
-                    <md-tab id="tab-posts" md-label="Groups"></md-tab>
-                </md-tabs>
-            </div>
         </md-app-toolbar>
-        <MessageBubble body="hello world">uUUUUu</MessageBubble>
-<!--        <h1>messages wow</h1>-->
+        <MessageBubble>uUUUUu</MessageBubble>
     </div>
 </template>
 <style>
+    md-app {
+        width: 100vw !important;
+    }
     #login {
         margin-top: 10px;
         background: #FAFAFA;
